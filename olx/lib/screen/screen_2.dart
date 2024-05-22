@@ -11,6 +11,9 @@ class Screen2 extends StatefulWidget {
 }
 
 class _Screen2State extends State<Screen2> {
+  final TextEditingController _searchController = TextEditingController();
+  String _searchQuery = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +24,7 @@ class _Screen2State extends State<Screen2> {
             children: [
               const Padding(padding: EdgeInsets.all(12)),
               const Text(
-                'WE FIND OUR 1000 + UPTDATES',
+                'WE FIND OUR 1000 + UPDATES',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               const Spacer(),
@@ -55,65 +58,30 @@ class _Screen2State extends State<Screen2> {
           const SizedBox(
             height: 20,
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: TextFormField(
+              controller: _searchController,
+              decoration: InputDecoration(
+                labelText: 'Search',
+                border: OutlineInputBorder(),
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.search),
+                  onPressed: () {
+                    setState(() {
+                      _searchQuery = _searchController.text.toLowerCase();
+                    });
+                  },
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
           Expanded(
             child: ListView(
-              children: const [
-                ProductItem(
-                  imagePath: 'assets/images/remote.png',
-                  title:
-                      'Universal remote control operating at different frequencies',
-                  condition: 'NEW',
-                  price: '5\$',
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                ProductItem(
-                  imagePath: 'assets/images/iphone.jpg',
-                  title: 'NEW 2024 IPHONE 512GB/8GB MEMORY',
-                  condition: 'NEW',
-                  price: '899\$',
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                ProductItem(
-                  imagePath: 'assets/images/kia.jpg',
-                  title: 'KIA SPORT CAR COMFORT + RELAX',
-                  condition: 'Новый',
-                  price: '12000\$',
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                ProductItem(
-                  imagePath: 'assets/images/remote.png',
-                  title: 'Пульт универсальный работающий на разных частотах',
-                  condition: 'Новый',
-                  price: '50 000 сум',
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                ProductItem(
-                  imagePath: 'assets/images/remote.png',
-                  title: 'Пульт универсальный работающий на разных частотах',
-                  condition: 'Новый',
-                  price: '50 000 сум',
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                ProductItem(
-                  imagePath: 'assets/images/remote.png',
-                  title: 'Пульт универсальный работающий на разных частотах',
-                  condition: 'Новый',
-                  price: '50 000 сум',
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-              ],
+              children: _buildFilteredItems(),
             ),
           ),
         ],
@@ -135,6 +103,54 @@ class _Screen2State extends State<Screen2> {
         ),
       ),
     );
+  }
+
+  List<Widget> _buildFilteredItems() {
+    final items = [
+      {
+        'imagePath': 'assets/images/remote.png',
+        'title': 'Universal remote control operating at different frequencies',
+        'condition': 'NEW',
+        'price': '5\$',
+      },
+      {
+        'imagePath': 'assets/images/iphone.jpg',
+        'title': 'NEW 2024 IPHONE 512GB/8GB MEMORY',
+        'condition': 'NEW',
+        'price': '899\$',
+      },
+      {
+        'imagePath': 'assets/images/kia.jpg',
+        'title': 'KIA SPORT CAR COMFORT + RELAX',
+        'condition': 'Новый',
+        'price': '12000\$',
+      },
+      {
+        'imagePath': 'assets/images/remote.png',
+        'title': 'Пульт универсальный работающий на разных частотах',
+        'condition': 'Новый',
+        'price': '50 000 сум',
+      },
+    ];
+
+    final filteredItems = items.where((item) {
+      final title = item['title']!.toLowerCase();
+      return title.contains(_searchQuery);
+    }).toList();
+
+    return filteredItems.map((item) {
+      return Column(
+        children: [
+          ProductItem(
+            imagePath: item['imagePath']!,
+            title: item['title']!,
+            condition: item['condition']!,
+            price: item['price']!,
+          ),
+          const SizedBox(height: 12),
+        ],
+      );
+    }).toList();
   }
 }
 

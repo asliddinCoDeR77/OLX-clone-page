@@ -11,6 +11,9 @@ class Screen1 extends StatefulWidget {
 }
 
 class _Screen1State extends State<Screen1> {
+  final TextEditingController _searchController = TextEditingController();
+  String _searchQuery = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,242 +59,30 @@ class _Screen1State extends State<Screen1> {
               ],
             ),
             const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: TextFormField(
+                controller: _searchController,
+                decoration: InputDecoration(
+                  labelText: 'Search',
+                  border: OutlineInputBorder(),
+                  suffixIcon: IconButton(
+                    icon: Icon(Icons.search),
+                    onPressed: () {
+                      setState(() {
+                        _searchQuery = _searchController.text.toLowerCase();
+                      });
+                    },
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
               height: 30,
             ),
-            Container(
-                width: 500,
-                height: 500,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.grey.shade100),
-                child: ListView(
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Image.asset('assets/images/remote.png'),
-                        const Row(
-                          children: [
-                            Padding(padding: EdgeInsets.all(5)),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Universal remote control',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16),
-                                ),
-                                Text('operating at different frequencies',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16)),
-                              ],
-                            ),
-                            Spacer(),
-                            Icon(CupertinoIcons.heart),
-                            SizedBox(
-                              width: 23,
-                            )
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        const Row(
-                          children: [
-                            Padding(padding: EdgeInsets.all(5)),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'NEW',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.blueGrey,
-                                      fontSize: 22),
-                                ),
-                                Text(
-                                  '50000 sum',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w800,
-                                      color: Colors.grey,
-                                      fontSize: 28),
-                                ),
-                                Text(
-                                  'Tashkent/Uchtepa Region',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black),
-                                ),
-                              ],
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ],
-                )),
-            const SizedBox(
-              height: 10,
-            ),
-            Container(
-                width: 500,
-                height: 500,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.grey.shade100),
-                child: ListView(
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Image.asset('assets/images/kia.jpg'),
-                        const Row(
-                          children: [
-                            Padding(padding: EdgeInsets.all(5)),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Universal remote control',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16),
-                                ),
-                                Text('operating at different frequencies',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16)),
-                              ],
-                            ),
-                            Spacer(),
-                            Icon(CupertinoIcons.heart),
-                            SizedBox(
-                              width: 23,
-                            )
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        const Row(
-                          children: [
-                            Padding(padding: EdgeInsets.all(5)),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'NEW',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.blueGrey,
-                                      fontSize: 22),
-                                ),
-                                Text(
-                                  '50000 sum',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w800,
-                                      color: Colors.grey,
-                                      fontSize: 28),
-                                ),
-                                Text(
-                                  'Tashkent/Uchtepa Region',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black),
-                                ),
-                              ],
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ],
-                )),
-            const SizedBox(
-              height: 10,
-            ),
-            Container(
-                width: 500,
-                height: 500,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.grey.shade100),
-                child: ListView(
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Image.asset('assets/images/remote.png'),
-                        const Row(
-                          children: [
-                            Padding(padding: EdgeInsets.all(5)),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Universal remote control',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16),
-                                ),
-                                Text('operating at different frequencies',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16)),
-                              ],
-                            ),
-                            Spacer(),
-                            Icon(CupertinoIcons.heart),
-                            SizedBox(
-                              width: 23,
-                            )
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        const Row(
-                          children: [
-                            Padding(padding: EdgeInsets.all(5)),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'NEW',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.blueGrey,
-                                      fontSize: 22),
-                                ),
-                                Text(
-                                  '50000 sum',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w800,
-                                      color: Colors.grey,
-                                      fontSize: 28),
-                                ),
-                                Text(
-                                  'Tashkent/Uchtepa Region',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black),
-                                ),
-                              ],
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ],
-                )),
+            _buildItemList(),
           ],
         ),
       ),
@@ -311,6 +102,112 @@ class _Screen1State extends State<Screen1> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildItemList() {
+    final items = [
+      {
+        'image': 'assets/images/remote.png',
+        'title': 'Universal remote control',
+        'subtitle': 'operating at different frequencies',
+        'price': '50000 sum',
+        'location': 'Tashkent/Uchtepa Region'
+      },
+      {
+        'image': 'assets/images/kia.jpg',
+        'title': 'Kia Car',
+        'subtitle': 'Brand new model',
+        'price': '150000 sum',
+        'location': 'Tashkent/Mirabad Region'
+      },
+      // Add more items as needed
+    ];
+
+    final filteredItems = items.where((item) {
+      return item['title']!.toLowerCase().contains(_searchQuery) ||
+          item['subtitle']!.toLowerCase().contains(_searchQuery);
+    }).toList();
+
+    return Column(
+      children: filteredItems.map((item) {
+        return Container(
+          width: 500,
+          height: 500,
+          margin: const EdgeInsets.symmetric(vertical: 10),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: Colors.grey.shade100),
+          child: ListView(
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Image.asset(item['image']!),
+                  const Padding(padding: EdgeInsets.all(5)),
+                  Row(
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            item['title']!,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16),
+                          ),
+                          Text(item['subtitle']!,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 16)),
+                        ],
+                      ),
+                      const Spacer(),
+                      const Icon(CupertinoIcons.heart),
+                      const SizedBox(
+                        width: 23,
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  Row(
+                    children: [
+                      const Padding(padding: EdgeInsets.all(5)),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'NEW',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: Colors.blueGrey,
+                                fontSize: 22),
+                          ),
+                          Text(
+                            item['price']!,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w800,
+                                color: Colors.grey,
+                                fontSize: 28),
+                          ),
+                          Text(
+                            item['location']!,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ],
+          ),
+        );
+      }).toList(),
     );
   }
 }
